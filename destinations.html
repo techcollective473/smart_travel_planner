@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Destinations</title>
+  <link rel="stylesheet" href="style.css">
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="dest-page">
+
+<h1 class="dest-title">DESTINATIONS</h1>
+
+<!-- FILTER BOX -->
+<div class="center-box">
+
+  <!-- INTEREST -->
+  <div class="dropdown">
+    <div class="dropdown-btn" onclick="toggleBox('interestBox')">
+      Interest ▼
+    </div>
+
+    <div id="interestBox" class="dropdown-menu">
+      <!-- JS will fill -->
+      <button class="apply-btn" onclick="closeBox('interestBox')">Apply</button>
+    </div>
+  </div>
+
+  <!-- REGION -->
+  <div class="dropdown">
+    <div class="dropdown-btn" onclick="toggleBox('stateBox')">
+      Region ▼
+    </div>
+
+    <div id="stateBox" class="dropdown-menu">
+      <!-- JS will fill -->
+      <button class="apply-btn" onclick="closeBox('stateBox')">Apply</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ACTION -->
+<div class="actions">
+  <button class="submit-btn" onclick="applyFilter()">Submit</button>
+  <button class="reset-btn" onclick="resetAll()">Reset</button>
+</div>
+
+<!-- RESULTS -->
+<div id="filteredCards"></div>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <img id="modalImg">
+      <h2 id="modalTitle"></h2>
+    </div>
+
+    <div class="modal-body">
+
+      <p id="shortDesc"></p>
+
+      <button id="toggleBtn" onclick="toggleDesc()">See More</button>
+
+      <p id="longDesc" style="display:none;"></p>
+
+      <p><b>Nearest Airport:</b> <span id="airport"></span></p>
+      <p><b>Nearest Railway Station:</b> <span id="rail"></span></p>
+
+      <p><b>Weather:</b> <span id="weather"></span></p>
+
+      <iframe id="map" width="100%" height="200"></iframe>
+
+      <button onclick="closeModal()">Close</button>
+
+    </div>
+
+  </div>
+</div>
+
+<script src="dest.js"></script>
+
+</body>
+</html>

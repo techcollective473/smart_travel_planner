@@ -1,0 +1,398 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  font-family: 'Poppins', sans-serif;
+  overflow: auto;
+}
+
+/* INTRO */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  inset: 0;
+  background: #f5d6a1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: transform 1s ease;
+}
+
+#textContainer {
+  height: 60px;
+  overflow: hidden;
+}
+
+#text {
+  font-size: 45px;
+  color: brown;
+  transition: transform 0.6s ease;
+}
+
+#attractions {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* background */
+#attractions::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/konark_temple.jpg") center/cover no-repeat;
+  filter: grayscale(100%);
+  z-index: 0;
+}
+
+/* overlay */
+#attractions::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  z-index: 1;
+}
+
+.viewport,
+.nav,
+.title,
+.subtitle,
+.discover {
+  position: relative;
+  z-index: 2;
+} 
+
+/* VIEWPORT (only this area scrolls) */
+.viewport {
+  overflow: hidden;
+  padding: 0 80px;
+}
+/* CARDS ROW */
+#cards {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.6s ease;
+}
+/* SINGLE CARD (multiple on screen) */
+.card {
+  min-width: 280px;   /* 🔥 key: 3–4 cards dikhenge */
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  /*flex-shrink: 0;*/
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card h2 {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: white;
+}
+
+/* TEXT */
+.title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;  /* 🔥 premium font */
+  font-weight: 800;                       /* 🔥 bold */
+  font-size: 60px;
+  letter-spacing: 4px;
+  color: #4f8db3;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  position: relative;
+  text-align: center;
+  color: black;
+  margin-top: 0px;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 28px;
+  width: 45px;
+  height: 65px;
+  cursor: pointer;
+}
+
+.nav.left { left: 10px; }
+.nav.right { right: 10px; }
+
+.discover {
+  position:absolute!important;   /* 🔥 screen pe chipka dega */
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+
+  z-index: 9 !important;     /* 🔥 sabke upar */
+
+  padding: 12px 25px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 25px;
+
+  display: block !important;
+}
+
+#modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  margin: 5% auto;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  position: relative;
+  height: 500px;
+}
+
+.modal-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(60%);
+}
+
+.modal-header h2 {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: white;
+  font-size: 24px;
+  z-index: 2;
+}
+.modal-body p {
+  margin: 4px 0 !important;   /* 🔥 force override */
+  line-height: 1.3 !important;
+}
+.modal-body button {
+  margin: 8px 0;
+}
+.modal-body {
+  padding: 10px !important;
+}
+.modal-body span {
+  text-align: right;
+}
+#longDesc {
+  margin-bottom: 50px;   /* 🔥 2 line gap */
+}
+#airport {
+  display: inline-block;
+  margin-top: 10px;
+}
+.dest-title {
+  text-align: center;
+  color: red;
+}
+
+.filter-box {
+  background: white;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#loader {
+  display: none;
+  margin: 20px auto;
+  border: 5px solid #eee;
+  border-top: 5px solid brown;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+#filteredCards {
+  margin-top: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+.no-result {
+  text-align: center;
+  margin-top: 40px;
+  color: #444;
+}
+
+.no-result h2 {
+  margin-bottom: 10px;
+}
+
+.no-result p {
+  color: gray;
+}
+/* ========================= */
+/* 🔥 DESTINATIONS PAGE */
+/* ========================= */
+
+.dest-page {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+
+  /* 🔥 BACKGROUND FIXED */
+  background: url("images/indian.jpg") no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 🔥 LIGHT OVERLAY */
+.dest-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.7);
+  z-index: -1;
+}
+
+/* TITLE */
+.dest-title {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;  /* 🔥 premium font */
+  font-weight: 800;                       /* 🔥 bold */
+  font-size: 65px;
+  letter-spacing: 4px;
+  color: #4f8db3;
+  margin-top: 30px;
+}
+
+/* ========================= */
+/* 🔥 FILTER BOX */
+/* ========================= */
+
+.center-box {
+  width: fit-content;
+  margin: 40px auto;
+  padding: 20px 30px;
+
+  background: rgba(255,255,255,0.3);
+  border-radius: 12px;
+  display: flex;
+  gap: 20px;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+  width: 200px;
+}
+
+.dropdown-btn {
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+
+  z-index: 100;
+}
+
+/* CHECKBOX */
+.dropdown-menu label {
+  display: block;
+  margin: 6px 0;
+}
+
+/* APPLY BUTTON */
+.apply-btn {
+  width: 100%;
+  background: red;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+/* ========================= */
+/* 🔥 ACTION BUTTONS */
+/* ========================= */
+
+.actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit-btn {
+  background: red;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  border: none;
+  margin-right: 10px;
+}
+
+.reset-btn {
+  border: 1px solid gray;
+  padding: 10px 25px;
+  border-radius: 25px;
+  background: white;
+}
+
+/* ========================= */
+/* 🔥 CARDS SECTION */
+/* ========================= */
+
+#filteredCards {
+  margin-top: 40px;   /* 🔥 dropdown ke neeche */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* HOVER */
+.card:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
