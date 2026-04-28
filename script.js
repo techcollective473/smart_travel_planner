@@ -115,7 +115,7 @@ async function openModal(p) {
 
   // WEATHER (demo safe)
   document.getElementById("weather").innerText = "Weather not available";
-  if (p.lat && p.lon) {
+  /*if (p.lat && p.lon) {
     try {
       const res = await fetch(
         https://api.openweathermap.org/data/2.5/weather?lat=${p.lat}&lon=${p.lon}&appid=YOUR_API_KEY&units=metric
@@ -130,7 +130,7 @@ async function openModal(p) {
 
   // MAP
   document.getElementById("map").src =
-    https://maps.google.com/maps?q=${p.lat},${p.lon}&z=12&output=embed;8
+    https://maps.google.com/maps?q=${p.lat},${p.lon}&z=12&output=embed;*/
 }
 
 function closeModal() {
