@@ -161,7 +161,7 @@ function toggleDesc() {
 
   if (d.style.display === "none") {
     d.style.display = "block";
-    btn.innerText = "See Less";   // 🔥 change text
+    btn.innerText = "See Less"; 
   } else {
     d.style.display = "none";
     btn.innerText = "See More";
