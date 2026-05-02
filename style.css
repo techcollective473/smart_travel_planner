@@ -77,7 +77,7 @@ body {
 }
 /* SINGLE CARD (multiple on screen) */
 .card {
-  min-width: 280px;   /* 🔥 key: 3–4 cards dikhenge */
+  min-width: 280px; 
   height: 380px;
   border-radius: 20px;
   overflow: hidden;
@@ -133,12 +133,12 @@ body {
 .nav.right { right: 10px; }
 
 .discover {
-  position:absolute!important;   /* 🔥 screen pe chipka dega */
+  position:absolute!important;  
   bottom: 20px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
 
-  z-index: 9 !important;     /* 🔥 sabke upar */
+  z-index: 9 !important;    
 
   padding: 12px 25px;
   background: red;
@@ -384,7 +384,7 @@ body {
 /* ========================= */
 
 #filteredCards {
-  margin-top: 40px;   /* 🔥 dropdown ke neeche */
+  margin-top: 40px;  
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
